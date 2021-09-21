@@ -10,20 +10,7 @@ class Book {
 // UI Class: Handle UI Tasks
 class UI {
   static displayBooks() {
-    const StoredBooks = [
-      {
-        title: "Book One",
-        author: "John Doe",
-        isbn: "123",
-      },
-      {
-        title: "Book Two",
-        author: "Jane Doe",
-        isbn: "456",
-      },
-    ];
-
-    const books = StoredBooks;
+    const books = Store.getBooks();
 
     books.forEach((book) => UI.addBookToList(book));
   }
@@ -118,6 +105,9 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
 
     // add a book to UI
     UI.addBookToList(book);
+
+    // add book to store
+    Store.addBook(book);
 
     // show success message
     UI.showAlert("Book Added!", "success");
